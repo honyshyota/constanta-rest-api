@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/honyshyota/github.com/honyshyota/constanta-rest-api'
+go build -v ./cmd/apiserver
+make: Leaving directory '/home/honyshyota/github.com/honyshyota/constanta-rest-api'
+ 

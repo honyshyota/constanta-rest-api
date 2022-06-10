@@ -10,7 +10,6 @@ import (
 
 var (
 	configPath string
-	
 )
 
 func init() {
