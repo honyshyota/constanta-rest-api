@@ -6,5 +6,6 @@ CREATE TABLE users (
     currency varchar,
     time_create time not null,
     time_update time not null,
-    transaction_status varchar
+    transaction_status varchar,
+    encrypted_password varchar
 );

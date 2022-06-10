@@ -10,7 +10,7 @@ type UserRepository struct {
 
 func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 	if err := r.store.db.QueryRow(
-		"INSERT INTO users (id, email, pay, currency, time_create, time_update, transaction_status) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING transaction_id",
+		"INSERT INTO users (id, email, pay, currency, time_create, time_update, transaction_status, encrypted_password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING transaction_id",
 		u.ID,
 		u.Email,
 		u.Pay,
@@ -18,6 +18,7 @@ func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 		u.TimeCreate,
 		u.TimeUpdate,
 		u.Status,
+		u.EncryptedPassword,
 	).Scan(&u.TransactionID); err != nil {
 		return nil, err
 	}
@@ -28,7 +29,7 @@ func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
 	u := &model.User{}
 	if err := r.store.db.QueryRow(
-		"SELECT transaction_id, id, email, pay, currency, time_create, time_update, transaction_status FROM users WHERE email = $1",
+		"SELECT transaction_id, id, email, pay, currency, time_create, time_update, transaction_status, encrypted_password FROM users WHERE email = $1",
 		email,
 	).Scan(
 		&u.TransactionID,
@@ -39,6 +40,7 @@ func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
 		&u.TimeCreate,
 		&u.TimeUpdate,
 		&u.Status,
+		&u.EncryptedPassword,
 	); err != nil {
 		return nil, err
 	}
