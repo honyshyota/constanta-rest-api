@@ -3,16 +3,16 @@ package model
 import "time"
 
 type User struct {
-	ID         int
-	Email      string
-	Pay        []*Pay
-	TimeCreate time.Time
-	TimeUpdate time.Time
+	ID         int       `pg:"user_id"`
+	Email      string    `pg:"email"`
+	Pay        []*Pay    `pg:"pay"`
+	TimeCreate time.Time `pg:"time_create"`
+	TimeUpdate time.Time `pg:"time_updata"`
 }
 
 type Pay struct {
-	TransactionID int
-	Summ          int
-	Currency      int
-	Status        string
+	TransactionID int    `pg:"transaction_id"`
+	Summ          int    `pg:"summ"`
+	Currency      int    `pg:"currency"`
+	Status        string `pg:"transaction_status"`
 }
