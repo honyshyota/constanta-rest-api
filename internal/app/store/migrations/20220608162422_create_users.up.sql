@@ -1,14 +1,10 @@
-CREATE TYPE pay AS (
-    transaction_id integer,
-    summ numeric,
-    currency varchar,
-    transaction_status varchar
-);
-
 CREATE TABLE users (
-    user_id bigserial not null,
+    transaction_id bigserial not null primary key,
+    id bigserial not null,
     email varchar not null,
-    pay pay[],
+    pay numeric,
+    currency varchar,
     time_create time not null,
-    time_update time not null
+    time_update time not null,
+    transaction_status varchar
 );

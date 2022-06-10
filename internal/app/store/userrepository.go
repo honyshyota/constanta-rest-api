@@ -10,11 +10,15 @@ type UserRepository struct {
 
 func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 	if err := r.store.db.QueryRow(
-		"INSERT INTO users (email, time_create, time_update) VALUES ($1, $2, $3) RETURNING user_id",
+		"INSERT INTO users (id, email, pay, currency, time_create, time_update, transaction_status) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING transaction_id",
+		u.ID,
 		u.Email,
+		u.Pay,
+		u.Currency,
 		u.TimeCreate,
 		u.TimeUpdate,
-	).Scan(&u.ID); err != nil {
+		u.Status,
+	).Scan(&u.TransactionID); err != nil {
 		return nil, err
 	}
 
@@ -24,13 +28,17 @@ func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
 	u := &model.User{}
 	if err := r.store.db.QueryRow(
-		"SELECT user_id, email, time_create, time_update FROM users WHERE email = $1",
+		"SELECT transaction_id, id, email, pay, currency, time_create, time_update, transaction_status FROM users WHERE email = $1",
 		email,
 	).Scan(
+		&u.TransactionID,
 		&u.ID,
 		&u.Email,
+		&u.Pay,
+		&u.Currency,
 		&u.TimeCreate,
 		&u.TimeUpdate,
+		&u.Status,
 	); err != nil {
 		return nil, err
 	}
