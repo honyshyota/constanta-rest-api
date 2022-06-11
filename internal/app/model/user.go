@@ -3,6 +3,8 @@ package model
 import (
 	"time"
 
+	validation "github.com/go-ozzo/ozzo-validation"
+	"github.com/go-ozzo/ozzo-validation/is"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -17,6 +19,19 @@ type User struct {
 	TimeUpdate        time.Time
 	Status            string
 	EncryptedPassword string
+}
+
+func (u *User) Validate() error {
+	if u.Pay <= 0 {
+		u.Status = "error"
+	}
+
+	return validation.ValidateStruct(
+		u,
+		validation.Field(&u.Email, validation.Required, is.Email),
+		validation.Field(&u.Password, validation.By(requiredIf(u.EncryptedPassword == "")), validation.Length(6, 100)),
+		validation.Field(&u.Currency, is.CurrencyCode),
+	)
 }
 
 func (u *User) BeforeCreate() error {
