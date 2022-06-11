@@ -1,4 +1,4 @@
-package store_test
+package pgstore_test
 
 import (
 	"os"

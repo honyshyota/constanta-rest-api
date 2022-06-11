@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 10 23:40:26 2022
+# Make data base, printed on Sat Jun 11 03:57:10 2022
 
 # Variables
 
@@ -16,6 +16,8 @@ make: *** No rule to make target 'all'.  Stop.
 GDK_BACKEND = x11
 # environment
 LC_ALL = C
+# environment
+NO_AT_BRIDGE = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
@@ -25,7 +27,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1f23d5fd-2525-4041-8985-ec4df40b68b4.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1ecc3952-59aa-44a0-ae71-5ae209c3dee7.sock
 # environment
 VSCODE_CWD = /home/honyshyota
 # default
@@ -143,7 +145,7 @@ MAKE = $(MAKE_COMMAND)
 # environment
 SNAP_COOKIE = djJa-xLJ9DOLmX3IvvHlBsWExW4M9VlB2wV09NVGJBFvFhVsP7kQ
 # environment
-PATH = /home/honyshyota/bin:/home/honyshyota/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+PATH = /home/honyshyota/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
 # default
 MAKEFILES := 
 # automatic
@@ -207,7 +209,7 @@ SNAP_CONTEXT = djJa-xLJ9DOLmX3IvvHlBsWExW4M9VlB2wV09NVGJBFvFhVsP7kQ
 # environment
 MANAGERPID = 886
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2211
+GIO_LAUNCHED_DESKTOP_FILE_PID = 150198
 # environment
 _ = /snap/code/97/usr/share/code/code
 # environment
@@ -263,7 +265,7 @@ GDMSESSION = ubuntu
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=125/1024=12%, Rehash=0, Collisions=5/156=3%
+# Load=126/1024=12%, Rehash=0, Collisions=5/157=3%
 
 # Pattern-specific Variable Values
 
@@ -283,8 +285,8 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Not a target:
 Makefile:
- 
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-06-08 15:31:29.239215309
 #  File has been updated.
 #  Successfully updated.
@@ -337,6 +339,6 @@ test:
 # strcache performance: lookups = 32 / hit rate = 34%
 # hash-table stats:
 # Load=21/8192=0%, Rehash=0, Collisions=0/32=0%
-# Finished Make data base on Fri Jun 10 23:40:26 2022
+# Finished Make data base on Sat Jun 11 03:57:10 2022
 
  
