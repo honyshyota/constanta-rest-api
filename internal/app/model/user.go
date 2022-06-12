@@ -9,16 +9,16 @@ import (
 )
 
 type User struct {
-	TransactionID     int
-	ID                int
-	Password          string
-	Email             string
-	Pay               float32
-	Currency          string
-	TimeCreate        time.Time
-	TimeUpdate        time.Time
-	Status            string
-	EncryptedPassword string
+	TransactionID     int       `json:"transaction_id"`
+	ID                int       `json:"id"`
+	Password          string    `json:"password,omitempty"`
+	Email             string    `json:"email"`
+	Pay               float32   `json:"pay"`
+	Currency          string    `json:"currency"`
+	TimeCreate        time.Time `json:"time_create"`
+	TimeUpdate        time.Time `json:"time_update"`
+	Status            string    `json:"status"`
+	EncryptedPassword string    `json:"-"`
 }
 
 func (u *User) Validate() error {
@@ -44,6 +44,10 @@ func (u *User) BeforeCreate() error {
 		u.EncryptedPassword = enc
 	}
 	return nil
+}
+
+func (u *User) Sanitize() {
+	u.Password = ""
 }
 
 func encryptedString(password string) (string, error) {
