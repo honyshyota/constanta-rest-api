@@ -1,6 +1,7 @@
 package apiserver
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"net/http"
@@ -13,12 +14,16 @@ import (
 )
 
 const (
-	sessionName = "usersession"
+	sessionName        = "usersession"
+	ctxKeyUser  ctxKey = iota
 )
 
 var (
 	errIncorrectEmailOrPassword = errors.New("incorrect email or password")
+	errNotAuthenticated         = errors.New("not authenticated")
 )
+
+type ctxKey int8
 
 type server struct {
 	router       *mux.Router
@@ -47,6 +52,30 @@ func (srv *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func (srv *server) configureRouter() {
 	srv.router.HandleFunc("/users", srv.handleUsersCreate()).Methods("POST")
 	srv.router.HandleFunc("/sessions", srv.handleSessionsCreate()).Methods("POST")
+}
+
+func (srv *server) authenticateUser(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		session, err := srv.sessionStore.Get(r, sessionName)
+		if err != nil {
+			srv.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
+
+		id, ok := session.Values["id"]
+		if !ok {
+			srv.error(w, r, http.StatusUnauthorized, errNotAuthenticated)
+			return
+		}
+
+		u, err := srv.store.User().Find(id.(int))
+		if err != nil {
+			srv.error(w, r, http.StatusUnauthorized, errNotAuthenticated)
+			return
+		}
+
+		next.ServeHTTP(w, r.WithContext(context.WithValue(r.Context(), ctxKeyUser, u)))
+	})
 }
 
 func (srv *server) handleUsersCreate() http.HandlerFunc {
