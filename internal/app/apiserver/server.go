@@ -6,6 +6,7 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
 	"github.com/honyshyota/constanta-rest-api/internal/app/model"
@@ -50,6 +51,7 @@ func (srv *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func (srv *server) configureRouter() {
+	srv.router.Use(handlers.CORS(handlers.AllowedOrigins([]string{"*"})))
 	srv.router.HandleFunc("/users", srv.handleUsersCreate()).Methods("POST")
 	srv.router.HandleFunc("/sessions", srv.handleSessionsCreate()).Methods("POST")
 
