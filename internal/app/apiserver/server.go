@@ -52,6 +52,10 @@ func (srv *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func (srv *server) configureRouter() {
 	srv.router.HandleFunc("/users", srv.handleUsersCreate()).Methods("POST")
 	srv.router.HandleFunc("/sessions", srv.handleSessionsCreate()).Methods("POST")
+
+	private := srv.router.PathPrefix("/private").Subrouter()
+	private.Use(srv.authenticateUser)
+	private.HandleFunc("/whoami", srv.handleWhoami()).Methods("GET")
 }
 
 func (srv *server) authenticateUser(next http.Handler) http.Handler {
@@ -76,6 +80,12 @@ func (srv *server) authenticateUser(next http.Handler) http.Handler {
 
 		next.ServeHTTP(w, r.WithContext(context.WithValue(r.Context(), ctxKeyUser, u)))
 	})
+}
+
+func (srv *server) handleWhoami() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		srv.respond(w, r, http.StatusOK, r.Context().Value(ctxKeyUser).(*model.User))
+	}
 }
 
 func (srv *server) handleUsersCreate() http.HandlerFunc {
