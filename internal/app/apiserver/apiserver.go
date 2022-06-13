@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"net/http"
 
+	"github.com/gorilla/sessions"
 	pgstore "github.com/honyshyota/constanta-rest-api/internal/app/store/pg"
 )
 
@@ -15,7 +16,8 @@ func Start(config *Config) error {
 
 	defer db.Close()
 	store := pgstore.New(db)
-	srv := newServer(store)
+	sessionStore := sessions.NewCookieStore([]byte(config.SessionKey))
+	srv := newServer(store, sessionStore)
 
 	return http.ListenAndServe(config.BindAddr, srv)
 }

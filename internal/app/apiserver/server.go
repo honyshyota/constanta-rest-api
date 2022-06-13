@@ -2,26 +2,37 @@ package apiserver
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
-	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
 	"github.com/honyshyota/constanta-rest-api/internal/app/model"
 	"github.com/honyshyota/constanta-rest-api/internal/app/store"
 	"github.com/sirupsen/logrus"
 )
 
+const (
+	sessionName = "usersession"
+)
+
+var (
+	errIncorrectEmailOrPassword = errors.New("incorrect email or password")
+)
+
 type server struct {
-	router *mux.Router
-	logger *logrus.Logger
-	store  store.Store
+	router       *mux.Router
+	logger       *logrus.Logger
+	store        store.Store
+	sessionStore sessions.Store
 }
 
-func newServer(store store.Store) *server {
+func newServer(store store.Store, sessionStore sessions.Store) *server {
 	srv := &server{
-		router: mux.NewRouter(),
-		logger: logrus.New(),
-		store:  store,
+		router:       mux.NewRouter(),
+		logger:       logrus.New(),
+		store:        store,
+		sessionStore: sessionStore,
 	}
 
 	srv.configureRouter()
@@ -35,11 +46,11 @@ func (srv *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func (srv *server) configureRouter() {
 	srv.router.HandleFunc("/users", srv.handleUsersCreate()).Methods("POST")
+	srv.router.HandleFunc("/sessions", srv.handleSessionsCreate()).Methods("POST")
 }
 
 func (srv *server) handleUsersCreate() http.HandlerFunc {
 	type request struct {
-		ID       int    `json:"id"`
 		Email    string `json:"email"`
 		Password string `json:"password"`
 	}
@@ -52,11 +63,8 @@ func (srv *server) handleUsersCreate() http.HandlerFunc {
 		}
 
 		u := &model.User{
-			ID:         req.ID,
-			Email:      req.Email,
-			Password:   req.Password,
-			TimeCreate: time.Now(),
-			TimeUpdate: time.Now(),
+			Email:    req.Email,
+			Password: req.Password,
 		}
 		if err := srv.store.User().Create(u); err != nil {
 			srv.error(w, r, http.StatusUnprocessableEntity, err)
@@ -66,6 +74,41 @@ func (srv *server) handleUsersCreate() http.HandlerFunc {
 		u.Sanitize()
 
 		srv.respond(w, r, http.StatusCreated, u)
+	}
+}
+
+func (srv *server) handleSessionsCreate() http.HandlerFunc {
+	type request struct {
+		Email    string `json:"email"`
+		Password string `json:"password"`
+	}
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		req := &request{}
+		if err := json.NewDecoder(r.Body).Decode(req); err != nil {
+			srv.error(w, r, http.StatusBadRequest, err)
+			return
+		}
+
+		u, err := srv.store.User().FindByEmail(req.Email)
+		if err != nil || !u.ComparePassword(req.Password) {
+			srv.error(w, r, http.StatusUnauthorized, errIncorrectEmailOrPassword)
+			return
+		}
+
+		session, err := srv.sessionStore.Get(r, sessionName)
+		if err != nil {
+			srv.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
+
+		session.Values["id"] = u.ID
+		if err := srv.sessionStore.Save(r, w, session); err != nil {
+			srv.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
+
+		srv.respond(w, r, http.StatusOK, nil)
 	}
 }
 

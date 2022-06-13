@@ -39,15 +39,6 @@ func TestUser_Validate(t *testing.T) {
 			isValid: false,
 		},
 		{
-			name: "incorrect currency",
-			user: func() *model.User {
-				u := model.TestUser(t)
-				u.Currency = "RU"
-				return u
-			},
-			isValid: false,
-		},
-		{
 			name: "with encrypted password",
 			user: func() *model.User {
 				u := model.TestUser(t)

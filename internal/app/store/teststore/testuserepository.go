@@ -20,7 +20,7 @@ func (r *UserRepository) Create(u *model.User) error {
 	}
 
 	r.users[u.Email] = u
-	u.TransactionID = len(r.users)
+	u.ID = len(r.users)
 
 	return nil
 }
