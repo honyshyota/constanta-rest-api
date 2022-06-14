@@ -9,14 +9,14 @@ import (
 )
 
 type Transaction struct {
-	TransID    int
-	UserID     int
-	Email      string
-	Pay        float32
-	Currency   string
-	TimeCreate time.Time
-	TimeUpdate time.Time
-	Status     string
+	TransID    int       `json:"trans_id"`
+	UserID     int       `json:"user_id"`
+	Email      string    `json:"email"`
+	Pay        float32   `json:"pay"`
+	Currency   string    `json:"currency"`
+	TimeCreate time.Time `json:"time_create"`
+	TimeUpdate time.Time `json:"time_update"`
+	Status     string    `json:"status"`
 }
 
 func (t *Transaction) Validate() error {

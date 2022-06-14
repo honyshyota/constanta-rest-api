@@ -58,6 +58,48 @@ func TestServer_AuthenticateUser(t *testing.T) {
 	}
 }
 
+func TestServer_HandleTransactionCreate(t *testing.T) {
+	srv := newServer(teststore.New(), sessions.NewCookieStore([]byte("secret")))
+	testCases := []struct {
+		name         string
+		payload      interface{}
+		expectedCode int
+	}{
+		{
+			name: "valid",
+			payload: map[string]string{
+				"email":    "user@example.com",
+				"password": "password",
+			},
+			expectedCode: http.StatusCreated,
+		},
+		{
+			name:         "invalid payload",
+			payload:      "invalid",
+			expectedCode: http.StatusBadRequest,
+		},
+		{
+			name: "invalid params",
+			payload: map[string]string{
+				"email":    "invalid",
+				"password": "password",
+			},
+			expectedCode: http.StatusUnprocessableEntity,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			rec := httptest.NewRecorder()
+			b := &bytes.Buffer{}
+			json.NewEncoder(b).Encode(tc.payload)
+			req, _ := http.NewRequest(http.MethodPost, "/users", b)
+			srv.ServeHTTP(rec, req)
+			assert.Equal(t, rec.Code, tc.expectedCode)
+		})
+	}
+}
+
 func TestServer_HandleUsersCreate(t *testing.T) {
 	srv := newServer(teststore.New(), sessions.NewCookieStore([]byte("secret")))
 	testCases := []struct {

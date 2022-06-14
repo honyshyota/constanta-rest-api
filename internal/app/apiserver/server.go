@@ -30,10 +30,11 @@ var (
 type ctxKey int8
 
 type server struct {
-	router       *mux.Router
-	logger       *logrus.Logger
-	store        store.Store
-	sessionStore sessions.Store
+	router           *mux.Router
+	logger           *logrus.Logger
+	transactionStore store.TransactionStore
+	store            store.Store
+	sessionStore     sessions.Store
 }
 
 func newServer(store store.Store, sessionStore sessions.Store) *server {
@@ -63,6 +64,7 @@ func (srv *server) configureRouter() {
 	private := srv.router.PathPrefix("/private").Subrouter()
 	private.Use(srv.authenticateUser)
 	private.HandleFunc("/whoami", srv.handleWhoami()).Methods("GET")
+	private.HandleFunc("/pay", srv.handleTransactionCreate()).Methods("POST")
 }
 
 func (srv *server) setRequestID(next http.Handler) http.Handler {
@@ -122,6 +124,40 @@ func (srv *server) authenticateUser(next http.Handler) http.Handler {
 func (srv *server) handleWhoami() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		srv.respond(w, r, http.StatusOK, r.Context().Value(ctxKeyUser).(*model.User))
+	}
+}
+
+func (srv *server) handleTransactionCreate() http.HandlerFunc {
+	type request struct {
+		Pay      float32 `json:"pay"`
+		Currency string  `json:"currency"`
+	}
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		req := &request{}
+		if err := json.NewDecoder(r.Body).Decode(req); err != nil {
+			srv.error(w, r, http.StatusBadRequest, err)
+			return
+		}
+
+		u := r.Context().Value(ctxKeyUser).(*model.User)
+
+		transaction := &model.Transaction{
+			UserID:     u.ID,
+			Email:      u.Email,
+			Pay:        req.Pay,
+			Currency:   req.Currency,
+			TimeCreate: time.Now(),
+			TimeUpdate: time.Now(),
+			Status:     randomizer(),
+		}
+
+		if err := srv.transactionStore.Transaction().Create(transaction); err != nil {
+			srv.error(w, r, http.StatusUnprocessableEntity, err)
+			return
+		}
+
+		srv.respond(w, r, http.StatusCreated, transaction)
 	}
 }
 

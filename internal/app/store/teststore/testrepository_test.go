@@ -9,6 +9,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestTransactionRepository_Create(t *testing.T) {
+	s := teststore.New()
+	trans := model.TestTransaction(t)
+	assert.NoError(t, s.Transaction().Create(trans))
+	assert.NotNil(t, trans)
+}
+
 func TestUserRepository_Create(t *testing.T) {
 	s := teststore.New()
 	u := model.TestUser(t)
