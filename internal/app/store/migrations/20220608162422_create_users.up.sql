@@ -6,7 +6,7 @@ CREATE TABLE users (
 
 CREATE TABLE transactions (
     trans_id bigserial not null,
-    user_id bigint not null,
+    id bigint not null,
     pay numeric not null,
     currency varchar not null,
     time_create timestamp not null,

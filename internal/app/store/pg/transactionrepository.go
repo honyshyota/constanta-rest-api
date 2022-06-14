@@ -1,6 +1,8 @@
 package pgstore
 
-import "github.com/honyshyota/constanta-rest-api/internal/app/model"
+import (
+	"github.com/honyshyota/constanta-rest-api/internal/app/model"
+)
 
 type TransactionRepository struct {
 	store *Store
@@ -12,7 +14,7 @@ func (r *TransactionRepository) Create(t *model.Transaction) error {
 	}
 
 	return r.store.db.QueryRow(
-		"INSERT INTO transactions (user_id, pay, currency, time_create, time_update, trans_status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING trans_id",
+		"INSERT INTO transactions (id, pay, currency, time_create, time_update, trans_status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING trans_id",
 		t.UserID,
 		t.Pay,
 		t.Currency,

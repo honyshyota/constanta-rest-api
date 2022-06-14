@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 14 01:45:40 2022
+# Make data base, printed on Tue Jun 14 14:54:13 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d57e7842-5520-43dd-b484-5d1aa3250072.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-13dcb0d3-3a41-4421-8e89-0943d155d309.sock
 # environment
 VSCODE_CWD = /home/honyshyota
 # default
@@ -61,7 +61,7 @@ VSCODE_CODE_CACHE_PATH = /home/honyshyota/.config/Code/CachedData/4af164ea3a06f7
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.CDAON1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.8HIZN1
 # default
 .LOADED := 
 # default
@@ -101,7 +101,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2772
+VSCODE_PID = 2325
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -109,7 +109,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/honyshyota-HP-Laptop-14s-fq0xxx:@/tmp/.ICE-unix/1076,unix/honyshyota-HP-Laptop-14s-fq0xxx:/tmp/.ICE-unix/1076
+SESSION_MANAGER = local/honyshyota-HP-Laptop-14s-fq0xxx:@/tmp/.ICE-unix/1038,unix/honyshyota-HP-Laptop-14s-fq0xxx:/tmp/.ICE-unix/1038
 # automatic
 *F = $(notdir $*)
 # environment
@@ -153,7 +153,7 @@ SNAP_USER_COMMON = /home/honyshyota/snap/code/common
 # environment
 SNAP = /snap/code/98
 # environment
-INVOCATION_ID = d10ce767da7142999689940ccf39f7c9
+INVOCATION_ID = a96577219262402ca3344b27a3b3fc1f
 # environment
 SNAP_REVISION = 98
 # environment
@@ -189,7 +189,7 @@ SNAP_ARCH = amd64
 # makefile (from 'Makefile', line 9)
 .DEFAULT_GOAL := build
 # environment
-SYSTEMD_EXEC_PID = 1100
+SYSTEMD_EXEC_PID = 1061
 # environment
 DISPLAY = :0
 # environment
@@ -205,9 +205,9 @@ SNAP_DATA = /var/snap/code/98
 # environment
 SNAP_CONTEXT = djJa-xLJ9DOLmX3IvvHlBsWExW4M9VlB2wV09NVGJBFvFhVsP7kQ
 # environment
-MANAGERPID = 981
+MANAGERPID = 935
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2725
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2276
 # environment
 _ = /snap/code/98/usr/share/code/code
 # environment
@@ -215,7 +215,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/honyshyota/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:33871
+JOURNAL_STREAM = 8:32408
 # environment
 GOMODCACHE = /home/honyshyota/go/pkg/mod
 # environment
@@ -280,11 +280,11 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # No implicit rules.
 
 # Files
- 
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-06-11 04:45:39.357838857
 #  File has been updated.
 #  Successfully updated.
@@ -337,6 +337,6 @@ test:
 # strcache performance: lookups = 32 / hit rate = 34%
 # hash-table stats:
 # Load=21/8192=0%, Rehash=0, Collisions=0/32=0%
-# Finished Make data base on Tue Jun 14 01:45:40 2022
+# Finished Make data base on Tue Jun 14 14:54:13 2022
 
  

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/google/uuid"
@@ -30,11 +31,10 @@ var (
 type ctxKey int8
 
 type server struct {
-	router           *mux.Router
-	logger           *logrus.Logger
-	transactionStore store.TransactionStore
-	store            store.Store
-	sessionStore     sessions.Store
+	router       *mux.Router
+	logger       *logrus.Logger
+	store        store.Store
+	sessionStore sessions.Store
 }
 
 func newServer(store store.Store, sessionStore sessions.Store) *server {
@@ -129,8 +129,8 @@ func (srv *server) handleWhoami() http.HandlerFunc {
 
 func (srv *server) handleTransactionCreate() http.HandlerFunc {
 	type request struct {
-		Pay      float32 `json:"pay"`
-		Currency string  `json:"currency"`
+		Pay      string `json:"pay"`
+		Currency string `json:"currency"`
 	}
 
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -142,17 +142,23 @@ func (srv *server) handleTransactionCreate() http.HandlerFunc {
 
 		u := r.Context().Value(ctxKeyUser).(*model.User)
 
+		pay, err := strconv.ParseFloat(req.Pay, 32)
+		if err != nil {
+			srv.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
+
 		transaction := &model.Transaction{
 			UserID:     u.ID,
 			Email:      u.Email,
-			Pay:        req.Pay,
+			Pay:        float32(pay),
 			Currency:   req.Currency,
 			TimeCreate: time.Now(),
 			TimeUpdate: time.Now(),
 			Status:     randomizer(),
 		}
 
-		if err := srv.transactionStore.Transaction().Create(transaction); err != nil {
+		if err := srv.store.Transaction().Create(transaction); err != nil {
 			srv.error(w, r, http.StatusUnprocessableEntity, err)
 			return
 		}

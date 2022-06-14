@@ -59,17 +59,25 @@ func TestServer_AuthenticateUser(t *testing.T) {
 }
 
 func TestServer_HandleTransactionCreate(t *testing.T) {
-	srv := newServer(teststore.New(), sessions.NewCookieStore([]byte("secret")))
+	store := teststore.New()
+	u := model.TestUser(t)
+	trans := model.TestTransaction(t)
+	store.Transaction().Create(trans)
+
 	testCases := []struct {
 		name         string
+		cookieValue  map[interface{}]interface{}
 		payload      interface{}
 		expectedCode int
 	}{
 		{
 			name: "valid",
-			payload: map[string]string{
-				"email":    "user@example.com",
-				"password": "password",
+			cookieValue: map[interface{}]interface{}{
+				"id": u.ID,
+			},
+			payload: map[string]interface{}{
+				"pay":      100.00,
+				"currency": "RUB",
 			},
 			expectedCode: http.StatusCreated,
 		},
@@ -88,12 +96,22 @@ func TestServer_HandleTransactionCreate(t *testing.T) {
 		},
 	}
 
+	secretKey := []byte("secret")
+	srv := newServer(store, sessions.NewCookieStore(secretKey))
+	sc := securecookie.New(secretKey, nil)
+	// handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	// 	w.WriteHeader(http.StatusOK)
+	// })
+
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			rec := httptest.NewRecorder()
 			b := &bytes.Buffer{}
 			json.NewEncoder(b).Encode(tc.payload)
-			req, _ := http.NewRequest(http.MethodPost, "/users", b)
+			cookieStr, _ := sc.Encode(sessionName, tc.cookieValue)
+			req, _ := http.NewRequest(http.MethodPost, "/private/pay", b)
+			req.Header.Set("Cookie", fmt.Sprintf("%s=%s", sessionName, cookieStr))
+
 			srv.ServeHTTP(rec, req)
 			assert.Equal(t, rec.Code, tc.expectedCode)
 		})
