@@ -68,6 +68,7 @@ func (srv *server) configureRouter() {
 	private.HandleFunc("/whoami", srv.handleWhoami()).Methods("GET")
 	private.HandleFunc("/pay", srv.handleTransactionCreate()).Methods("POST")
 	private.HandleFunc("/update", srv.handleTransactionAdmin()).Methods("POST")
+	private.HandleFunc("/checkstatus", srv.handleCheckTransStatus()).Methods("GET")
 }
 
 func (srv *server) setRequestID(next http.Handler) http.Handler {
@@ -201,6 +202,35 @@ func (srv *server) handleTransactionAdmin() http.HandlerFunc {
 			}
 
 			srv.respond(w, r, http.StatusCreated, req)
+		} else {
+			srv.error(w, r, http.StatusBadRequest, errNotFound)
+			return
+		}
+	}
+}
+
+func (srv *server) handleCheckTransStatus() http.HandlerFunc {
+	type request struct {
+		TransID int `json:"trans_id,string"`
+	}
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		u := r.Context().Value(ctxKeyUser).(*model.User)
+		if u.Email == "admin@example.com" {
+			req := &request{}
+			if err := json.NewDecoder(r.Body).Decode(req); err != nil {
+				srv.error(w, r, http.StatusBadRequest, err)
+				return
+			}
+
+			trans, err := srv.store.Transaction().FindTrans(req.TransID)
+			if err != nil {
+				srv.error(w, r, http.StatusNotFound, err)
+				return
+			}
+
+			srv.respond(w, r, http.StatusOK, trans.Status)
+
 		} else {
 			srv.error(w, r, http.StatusBadRequest, errNotFound)
 			return
