@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 14 14:54:13 2022
+# Make data base, printed on Wed Jun 15 14:51:42 2022
 
 # Variables
 
@@ -25,7 +23,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-13dcb0d3-3a41-4421-8e89-0943d155d309.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d231cfd8-7e14-4c1f-8183-99af965ce0a2.sock
 # environment
 VSCODE_CWD = /home/honyshyota
 # default
@@ -61,7 +59,7 @@ VSCODE_CODE_CACHE_PATH = /home/honyshyota/.config/Code/CachedData/4af164ea3a06f7
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.8HIZN1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.CAHKN1
 # default
 .LOADED := 
 # default
@@ -101,7 +99,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2325
+VSCODE_PID = 2945
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -109,7 +107,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/honyshyota-HP-Laptop-14s-fq0xxx:@/tmp/.ICE-unix/1038,unix/honyshyota-HP-Laptop-14s-fq0xxx:/tmp/.ICE-unix/1038
+SESSION_MANAGER = local/honyshyota-HP-Laptop-14s-fq0xxx:@/tmp/.ICE-unix/1031,unix/honyshyota-HP-Laptop-14s-fq0xxx:/tmp/.ICE-unix/1031
 # automatic
 *F = $(notdir $*)
 # environment
@@ -153,7 +151,7 @@ SNAP_USER_COMMON = /home/honyshyota/snap/code/common
 # environment
 SNAP = /snap/code/98
 # environment
-INVOCATION_ID = a96577219262402ca3344b27a3b3fc1f
+INVOCATION_ID = 519998f8e9f34813a14b21d955dda84c
 # environment
 SNAP_REVISION = 98
 # environment
@@ -189,7 +187,7 @@ SNAP_ARCH = amd64
 # makefile (from 'Makefile', line 9)
 .DEFAULT_GOAL := build
 # environment
-SYSTEMD_EXEC_PID = 1061
+SYSTEMD_EXEC_PID = 1056
 # environment
 DISPLAY = :0
 # environment
@@ -205,9 +203,9 @@ SNAP_DATA = /var/snap/code/98
 # environment
 SNAP_CONTEXT = djJa-xLJ9DOLmX3IvvHlBsWExW4M9VlB2wV09NVGJBFvFhVsP7kQ
 # environment
-MANAGERPID = 935
+MANAGERPID = 938
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2276
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2896
 # environment
 _ = /snap/code/98/usr/share/code/code
 # environment
@@ -215,7 +213,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/honyshyota/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:32408
+JOURNAL_STREAM = 8:30207
 # environment
 GOMODCACHE = /home/honyshyota/go/pkg/mod
 # environment
@@ -285,6 +283,8 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 Makefile:
 #  Implicit rule search has been done.
  
+make: *** No rule to make target 'all'.  Stop.
+
 #  Last modified 2022-06-11 04:45:39.357838857
 #  File has been updated.
 #  Successfully updated.
@@ -337,6 +337,6 @@ test:
 # strcache performance: lookups = 32 / hit rate = 34%
 # hash-table stats:
 # Load=21/8192=0%, Rehash=0, Collisions=0/32=0%
-# Finished Make data base on Tue Jun 14 14:54:13 2022
+# Finished Make data base on Wed Jun 15 14:51:42 2022
 
  

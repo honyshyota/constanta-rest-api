@@ -19,3 +19,11 @@ func (r *TransactionRepository) Create(t *model.Transaction) error {
 
 	return nil
 }
+
+func (r *TransactionRepository) FindTrans(id int) (*model.Transaction, error) {
+	return nil, nil
+}
+
+func (r *TransactionRepository) StatusUpdate(status string, id int) error {
+	return nil
+}

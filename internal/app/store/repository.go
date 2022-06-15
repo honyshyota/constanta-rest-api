@@ -10,4 +10,6 @@ type UserRepository interface {
 
 type TransactionRepository interface {
 	Create(*model.Transaction) error
+	StatusUpdate(string, int) error
+	FindTrans(int) (*model.Transaction, error)
 }
