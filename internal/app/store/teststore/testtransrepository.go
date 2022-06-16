@@ -27,3 +27,11 @@ func (r *TransactionRepository) FindTrans(id int) (*model.Transaction, error) {
 func (r *TransactionRepository) StatusUpdate(status string, id int) error {
 	return nil
 }
+
+func (r *TransactionRepository) Find(data string) ([]*model.Transaction, error) {
+	return nil, nil
+}
+
+func (r *TransactionRepository) Delete(id int) error {
+	return nil
+}

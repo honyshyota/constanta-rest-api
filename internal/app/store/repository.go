@@ -12,4 +12,6 @@ type TransactionRepository interface {
 	Create(*model.Transaction) error
 	StatusUpdate(string, int) error
 	FindTrans(int) (*model.Transaction, error)
+	Find(string) ([]*model.Transaction, error)
+	Delete(int) error
 }
