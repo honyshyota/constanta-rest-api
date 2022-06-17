@@ -2,75 +2,44 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target 'all'.  Stop.
 
 # GNU Make 4.3
- 
 # Built for x86_64-pc-linux-gnu
- 
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
- 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
- 
 # This is free software: you are free to change and redistribute it.
- 
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
- 
-# Make data base, printed on Thu Jun 16 01:45:34 2022
- 
+# Make data base, printed on Fri Jun 17 18:18:38 2022
 
 # Variables
- 
 
- 
 # environment
- 
 GDK_BACKEND = x11
- 
 # environment
- 
 LC_ALL = C
- 
 # environment
- 
 GNOME_SHELL_SESSION_MODE = ubuntu
- 
 # environment
- 
 SSH_AGENT_LAUNCHER = gnome-keyring
- 
 # environment
- 
 SNAP_INSTANCE_KEY = 
- 
 # environment
- 
 GJS_DEBUG_OUTPUT = stderr
- 
 # environment
- 
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-857b720a-afde-4670-ace1-0a4148ac0980.sock
- 
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-24875c1f-8dd5-4b60-9a13-f6cfbfa0b2ae.sock
 # environment
- 
 VSCODE_CWD = /home/honyshyota
- 
 # default
- 
 MAKE_COMMAND := make
- 
 # environment
- 
 QT_ACCESSIBILITY = 1
- 
 # environment
- 
 GOPATH = /home/honyshyota/go
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
 SNAP_INSTANCE_NAME = code
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/98/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -88,11 +57,11 @@ VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/honyshyota/.config/Code/CachedData/4af164ea3a06f701fe3e89a2bcbb421d2026b68f
+VSCODE_CODE_CACHE_PATH = /home/honyshyota/.config/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.7JHIN1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.DJNON1
 # default
 .LOADED := 
 # default
@@ -132,7 +101,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2714
+VSCODE_PID = 15323
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -140,7 +109,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/honyshyota-HP-Laptop-14s-fq0xxx:@/tmp/.ICE-unix/1050,unix/honyshyota-HP-Laptop-14s-fq0xxx:/tmp/.ICE-unix/1050
+SESSION_MANAGER = local/honyshyota-HP-Laptop-14s-fq0xxx:@/tmp/.ICE-unix/1080,unix/honyshyota-HP-Laptop-14s-fq0xxx:/tmp/.ICE-unix/1080
 # automatic
 *F = $(notdir $*)
 # environment
@@ -150,7 +119,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{"*":"ru"},"_languagePackId":"4165c719fdf7a78444ed970b4565033b.ru","_translationsConfigFile":"/home/honyshyota/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru/tcf.json","_cacheRoot":"/home/honyshyota/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru","_resolvedLanguagePackCoreLocation":"/home/honyshyota/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru/4af164ea3a06f701fe3e89a2bcbb421d2026b68f","_corruptedFile":"/home/honyshyota/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{"*":"ru"},"_languagePackId":"4165c719fdf7a78444ed970b4565033b.ru","_translationsConfigFile":"/home/honyshyota/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru/tcf.json","_cacheRoot":"/home/honyshyota/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru","_resolvedLanguagePackCoreLocation":"/home/honyshyota/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru/30d9c6cd9483b2cc586687151bcbcd635f373630","_corruptedFile":"/home/honyshyota/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru/corrupted.info","_languagePackSupport":true}
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -182,11 +151,11 @@ MAKEFILES :=
 # environment
 SNAP_USER_COMMON = /home/honyshyota/snap/code/common
 # environment
-SNAP = /snap/code/98
+SNAP = /snap/code/99
 # environment
-INVOCATION_ID = da115c1fdbe24912b5f6380d5dc3fb22
+INVOCATION_ID = 42299502618a46d8b6dfc60549882431
 # environment
-SNAP_REVISION = 98
+SNAP_REVISION = 99
 # environment
 SNAP_REAL_HOME = /home/honyshyota
 # environment
@@ -217,10 +186,10 @@ LOGNAME = honyshyota
 GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
 SNAP_ARCH = amd64
-# makefile (from 'Makefile', line 9)
+# makefile (from 'Makefile', line 13)
 .DEFAULT_GOAL := build
 # environment
-SYSTEMD_EXEC_PID = 1076
+SYSTEMD_EXEC_PID = 1109
 # environment
 DISPLAY = :0
 # environment
@@ -232,21 +201,21 @@ MAKE_VERSION := 4.3
 # environment
 DISABLE_WAYLAND = 1
 # environment
-SNAP_DATA = /var/snap/code/98
+SNAP_DATA = /var/snap/code/99
 # environment
 SNAP_CONTEXT = djJa-xLJ9DOLmX3IvvHlBsWExW4M9VlB2wV09NVGJBFvFhVsP7kQ
 # environment
-MANAGERPID = 951
+MANAGERPID = 985
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2598
+GIO_LAUNCHED_DESKTOP_FILE_PID = 15277
 # environment
-_ = /snap/code/98/usr/share/code/code
+_ = /snap/code/99/usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/honyshyota/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:32311
+JOURNAL_STREAM = 8:34883
 # environment
 GOMODCACHE = /home/honyshyota/go/pkg/mod
 # environment
@@ -260,11 +229,11 @@ QT_IM_MODULE = ibus
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-2ee5a0c7-1.68.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-2ee5a0c7-1.68.1-main.sock
 # environment
 SNAP_NAME = code
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/98/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/99/usr/share/glib-2.0/schemas
 # environment
 IM_CONFIG_PHASE = 1
 # environment
@@ -274,7 +243,7 @@ GOPROXY = https://proxy.golang.org,direct
 # automatic
 <F = $(notdir $<)
 # environment
-SNAP_VERSION = 4af164ea
+SNAP_VERSION = 30d9c6cd
 # default
 SUFFIXES := 
 # environment
@@ -286,7 +255,7 @@ SNAP_COMMON = /var/snap/code/common
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # environment
-SNAP_USER_DATA = /home/honyshyota/snap/code/98
+SNAP_USER_DATA = /home/honyshyota/snap/code/99
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -302,9 +271,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 66311, inode 1053611): 13 files, no impossibilities.
+# . (device 66311, inode 1053611): 15 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -312,11 +281,20 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Files
 
+docker:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 11):
+		sudo docker-compose up  --remove-orphans --build
+
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-11 04:45:39.357838857
+#  Last modified 2022-06-16 17:38:05.13105709
 #  File has been updated.
+ 
 #  Successfully updated.
 
 # Not a target:
@@ -342,32 +320,31 @@ build:
 
 test:
 #  Phony target (prerequisite of .PHONY).
- 
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 7):
 		go test -v -race -timeout 30s ./...
 
-.PHONY: build test
+.PHONY: build test docker
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=7/1024=1%, Rehash=0, Collisions=0/22=0%
+# Load=8/1024=1%, Rehash=0, Collisions=0/26=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 21 / storage = 166 B / avg = 7 B
-# current buf: size = 8162 B / used = 166 B / count = 21 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 24 / storage = 203 B / avg = 8 B
+# current buf: size = 8162 B / used = 203 B / count = 24 / avg = 8 B
 
-# strcache performance: lookups = 32 / hit rate = 34%
+# strcache performance: lookups = 39 / hit rate = 38%
 # hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=0/32=0%
-# Finished Make data base on Thu Jun 16 01:45:34 2022
+# Load=24/8192=0%, Rehash=0, Collisions=0/39=0%
+# Finished Make data base on Fri Jun 17 18:18:38 2022
 
  
