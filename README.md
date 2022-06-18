@@ -41,5 +41,5 @@ API должно поддерживать следующие действия:
 ![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_create_user.png)
 ![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_create_session.png)
 ![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_create_transaction.png)
-![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_update_transaction.png)
+![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_update_status.png)
 ![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_delete_transaction.png)
