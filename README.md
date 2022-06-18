@@ -36,6 +36,13 @@ API должно поддерживать следующие действия:
 
 Кроме того, пожалуйста, подготовь Dockerfile для того, чтобы сервис можно было проще развернуть, и напиши короткое описание API в README. Будет совсем хорошо, если напишешь тесты для API.
 
+## How to
+
+* Запускать с помощью ```
+make
+```
+
+
 
 ![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_run.png)
 ![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_create_user.png)
