@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=600px height=400px src="https://github.com/honyshyota/http-rest-api/blob/master/images/rest_api.png" alt="Project logo"></a>
+</p>
+
+
 # Rest API
 
 ## Task Description
