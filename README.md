@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=600px height=400px src="https://github.com/honyshyota/http-rest-api/blob/master/images/rest_api.png" alt="Project logo"></a>
+ <img width=600px height=400px src="https://github.com/honyshyota/constanta-rest-api/blob/master/images/rest_api.png" alt="Project logo"></a>
 </p>
 
 
@@ -35,3 +35,11 @@ API должно поддерживать следующие действия:
 6. Отмена платежа по его ID. API должно вернуть ошибку, если отмена невозможна (например потому что платеж в том статусе, в котором отменить нельзя).
 
 Кроме того, пожалуйста, подготовь Dockerfile для того, чтобы сервис можно было проще развернуть, и напиши короткое описание API в README. Будет совсем хорошо, если напишешь тесты для API.
+
+
+![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_run.png)
+![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_create_user.png)
+![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_create_session.png)
+![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_create_transaction.png)
+![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_update_transaction.png)
+![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_delete_transaction.png)
