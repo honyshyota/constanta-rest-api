@@ -39,8 +39,23 @@ API должно поддерживать следующие действия:
 ## How to
 
 * Запускать с помощью ```make```
+* Далее если используете [httpie](https://httpie.io/) :
+* создать пользователя ```http POST http://localhost:8080/users email=admin@example.com password=password```
+*         пользователь admin@example.com имеет доступ к обновлению статуса платежа
+* установить cookie ```http POST http://localhost:8080/sessions email=admin@example.com password=password```
+*         далее пользователь уже авторизован и можно работать через сессии
+* создать платеж ```http -v --session=user POST http://localhost:8080/private/pay pay=450 currency=RUB```
+*         платеж с 10% вероятностью создастся со статусом error
+* обновить статус платежа ```http -v --session=user POST http://localhost:8080/private/update trans_id=1 trans_status=success```
+*         доступно только пользователю admin, невозможно изменить если платеж в терминальной стадии error
+* проверка статуса платежа по id транзакции ```http -v --session=user POST http://localhost:8080/private/checkstatus trans_id=1```
+*         доступно только пользователю admin
+* поиск транзакций по id, email ```http -v --session=user POST http://localhost:8080/private/findtrans data=1```
+*         на вход принимает либо TransactionID либо email
+* удаление транзакции ```http -v --session=user POST http://localhost:8080/private/delete trans_id=1```
+*         транзакцию невозможно удалить если она в статусе success или error 
 
-
+## Look here
 
 ![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_run.png)
 ![alt text](https://github.com/honyshyota/constanta-rest-api/blob/master/images/example_create_user.png)
