@@ -6,6 +6,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/honyshyota/constanta-rest-api/internal/app/apiserver"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -26,6 +27,6 @@ func main() {
 	}
 
 	if err := apiserver.Start(config); err != nil {
-		log.Fatal(err)
+		logrus.Fatal("connection db error: ", err)
 	}
 }

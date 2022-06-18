@@ -10,4 +10,4 @@ test:
 docker:
 		sudo docker-compose up  --remove-orphans --build
 
-.DEFAULT_GOAL := build
+.DEFAULT_GOAL := docker

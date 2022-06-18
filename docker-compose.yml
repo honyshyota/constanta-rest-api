@@ -1,29 +1,45 @@
-version: '3.8'
+version: '3.9'
 
 services:
 
-  postgres:
+  db:
+    restart: always
+    image: postgres:latest
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes: 
+      - ./internal/pg/data:/var/lib/postgresql/data
+
+  test_db:
+    depends_on:
+      - db
     restart: always
     image: postgres:latest
     ports:
-      - 5433:5432
+      - "5433:5433"
     environment:
+      - POSTGRES_DB=postgres_test
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=restapi_constanta
     volumes:
-      - ./internal/pg/data:/var/lib/postgresql/data
+      - .:/docker-entrypoint-initdb.d/init.sql
+      - ./internal/pgtest/data:/var/lib/postgresql/data
 
   resapi:
-    depends_on:
-      - postgres
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    container_name: restapi
-    ports:
+    depends_on: 
+      - test_db
+    build: ./
+    ports: 
       - "8080:8080"
     environment:
-      HTTP_ADDR: ":8080"
-      PG_URL: "postgres://postgres:postgres@postgres/restapi_constanta?sslmode=disable"
-      PG_MIGRATIONS_PATH: "file://../../internal/migrations"
+      DB_USERNAME: "postgres"
+      DB_PASSWORD: "postgres"
+      DB_DB: "postgres"
+      DB_HOST: "db"
+      DB_TABLE: "postgres"
+      DB_PORT: "5432"
+    command: ./wait-for-postgres.sh db ./apiserver
