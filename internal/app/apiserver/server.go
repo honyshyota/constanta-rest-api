@@ -60,12 +60,15 @@ func (srv *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func (srv *server) configureRouter() {
+	// Logger RequestID and CORS
 	srv.router.Use(srv.setRequestID)
 	srv.router.Use(srv.logRequest)
 	srv.router.Use(handlers.CORS(handlers.AllowedOrigins([]string{"*"})))
+	// external funcs
 	srv.router.HandleFunc("/users", srv.handleUsersCreate()).Methods("POST")
 	srv.router.HandleFunc("/sessions", srv.handleSessionsCreate()).Methods("POST")
 
+	// private funcs
 	private := srv.router.PathPrefix("/private").Subrouter()
 	private.Use(srv.authenticateUser)
 	private.HandleFunc("/whoami", srv.handleWhoami()).Methods("GET")
@@ -106,6 +109,7 @@ func (srv *server) logRequest(next http.Handler) http.Handler {
 	})
 }
 
+// Authentification users
 func (srv *server) authenticateUser(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		session, err := srv.sessionStore.Get(r, sessionName)
@@ -130,12 +134,14 @@ func (srv *server) authenticateUser(next http.Handler) http.Handler {
 	})
 }
 
+// Yourself monitor)))
 func (srv *server) handleWhoami() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		srv.respond(w, r, http.StatusOK, r.Context().Value(ctxKeyUser).(*model.User))
 	}
 }
 
+// Transactions create
 func (srv *server) handleTransactionCreate() http.HandlerFunc {
 	type request struct {
 		Pay      string `json:"pay"`
@@ -164,7 +170,7 @@ func (srv *server) handleTransactionCreate() http.HandlerFunc {
 			Currency:   req.Currency,
 			TimeCreate: time.Now(),
 			TimeUpdate: time.Now(),
-			Status:     randomizer(),
+			Status:     randomizer(), // Simple randomizer
 		}
 
 		if err := srv.store.Transaction().Create(transaction); err != nil {
@@ -176,6 +182,7 @@ func (srv *server) handleTransactionCreate() http.HandlerFunc {
 	}
 }
 
+// Transaction status update (Admin use only)
 func (srv *server) handleTransactionAdmin() http.HandlerFunc {
 	type request struct {
 		TransID int    `json:"trans_id,string"`
@@ -214,6 +221,7 @@ func (srv *server) handleTransactionAdmin() http.HandlerFunc {
 	}
 }
 
+// Transaction check status (admin use only)
 func (srv *server) handleCheckTransStatus() http.HandlerFunc {
 	type request struct {
 		TransID int `json:"trans_id,string"`
@@ -243,6 +251,7 @@ func (srv *server) handleCheckTransStatus() http.HandlerFunc {
 	}
 }
 
+// Find all user transactions
 func (srv *server) handleFindTransactions() http.HandlerFunc {
 	type request struct {
 		Data string `json:"data"`
@@ -264,6 +273,7 @@ func (srv *server) handleFindTransactions() http.HandlerFunc {
 	}
 }
 
+// Delete transaction
 func (srv *server) handleDeleteTransaction() http.HandlerFunc {
 	type request struct {
 		TransID int `json:"trans_id,string"`
@@ -300,6 +310,7 @@ func (srv *server) handleDeleteTransaction() http.HandlerFunc {
 	}
 }
 
+// Users create
 func (srv *server) handleUsersCreate() http.HandlerFunc {
 	type request struct {
 		Email    string `json:"email"`
@@ -328,6 +339,7 @@ func (srv *server) handleUsersCreate() http.HandlerFunc {
 	}
 }
 
+// Set sessions
 func (srv *server) handleSessionsCreate() http.HandlerFunc {
 	type request struct {
 		Email    string `json:"email"`

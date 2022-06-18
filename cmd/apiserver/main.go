@@ -18,6 +18,7 @@ func init() {
 }
 
 func main() {
+	// Parsing conf from command line
 	flag.Parse()
 
 	config := apiserver.NewConfig()
@@ -25,7 +26,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	
 	if err := apiserver.Start(config); err != nil {
 		logrus.Fatal("connection db error: ", err)
 	}

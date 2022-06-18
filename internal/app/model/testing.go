@@ -17,7 +17,7 @@ func TestTransaction(t *testing.T) *Transaction {
 	return &Transaction{
 		TransID:    1,
 		UserID:     1,
-		Email:      "user@example.com",
+		Email:      "admin@example.com",
 		Pay:        100.00,
 		Currency:   "RUB",
 		TimeCreate: time.Now(),

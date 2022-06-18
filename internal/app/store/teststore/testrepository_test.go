@@ -16,6 +16,15 @@ func TestTransactionRepository_Create(t *testing.T) {
 	assert.NotNil(t, trans)
 }
 
+func TestTransactionRepository_FindTrans(t *testing.T) {
+	s := teststore.New()
+	trans := model.TestTransaction(t)
+	s.Transaction().Create(trans)
+	trans2, err := s.Transaction().FindTrans(trans.TransID)
+	assert.NoError(t, err)
+	assert.NotNil(t, trans2)
+}
+
 func TestUserRepository_Create(t *testing.T) {
 	s := teststore.New()
 	u := model.TestUser(t)

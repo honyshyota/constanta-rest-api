@@ -16,6 +16,7 @@ import (
 )
 
 func Start(config *Config) error {
+	// DB init
 	db, err := newDB(config.DatabaseURL, config)
 	if err != nil {
 		return err
@@ -30,6 +31,7 @@ func Start(config *Config) error {
 }
 
 func newDB(databaseURL string, config *Config) (*sql.DB, error) {
+	// DB connect
 	db, err := sql.Open("postgres", databaseURL)
 	if err != nil {
 		return nil, err
@@ -40,12 +42,14 @@ func newDB(databaseURL string, config *Config) (*sql.DB, error) {
 	}
 
 	if db != nil {
+		// main DB migrations
 		logrus.Println("Running PostgreSQL main migrations")
 		if err := runPgMigrations(config, config.PgURL); err != nil {
 			return nil, fmt.Errorf("runPgMigrations main failed: %w", err)
 		}
 		logrus.Println("Main migrations done")
 
+		//test DB migrations
 		logrus.Println("Running PostgreSQL test migrations")
 		if err := runPgMigrations(config, config.PgTest); err != nil {
 			return nil, fmt.Errorf("runPgMigrations test failed: %w", err)

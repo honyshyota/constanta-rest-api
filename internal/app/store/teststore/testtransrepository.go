@@ -2,6 +2,7 @@ package teststore
 
 import (
 	"github.com/honyshyota/constanta-rest-api/internal/app/model"
+	"github.com/honyshyota/constanta-rest-api/internal/app/store"
 )
 
 type TransactionRepository struct {
@@ -21,7 +22,12 @@ func (r *TransactionRepository) Create(t *model.Transaction) error {
 }
 
 func (r *TransactionRepository) FindTrans(id int) (*model.Transaction, error) {
-	return nil, nil
+	transaction, ok := r.transactions[id]
+	if !ok {
+		return nil, store.ErrRecordNotFound
+	}
+
+	return transaction, nil
 }
 
 func (r *TransactionRepository) StatusUpdate(status string, id int) error {
