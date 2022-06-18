@@ -173,6 +173,7 @@ func (srv *server) handleTransactionCreate() http.HandlerFunc {
 			Status:     randomizer(), // Simple randomizer
 		}
 
+		// Transaction create and validation
 		if err := srv.store.Transaction().Create(transaction); err != nil {
 			srv.error(w, r, http.StatusUnprocessableEntity, err)
 			return
@@ -328,6 +329,8 @@ func (srv *server) handleUsersCreate() http.HandlerFunc {
 			Email:    req.Email,
 			Password: req.Password,
 		}
+
+		// Create and validation
 		if err := srv.store.User().Create(u); err != nil {
 			srv.error(w, r, http.StatusUnprocessableEntity, err)
 			return
